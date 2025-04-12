@@ -48,6 +48,10 @@ from drf_yasg import openapi
 from rest_framework_simplejwt.views import TokenObtainPairView, TokenRefreshView
 
 
+from django.conf import settings
+from django.conf.urls.static import static
+
+
 schema_view = get_schema_view(
     openapi.Info(
         title="API de Clientes",
@@ -66,9 +70,10 @@ urlpatterns = [
     path('redoc/', schema_view.with_ui('redoc', cache_timeout=0), name='schema-redoc'),
     path('api/token/', TokenObtainPairView.as_view(), name='token_obtain_pair'),
     path('api/token/refresh/', TokenRefreshView.as_view(), name='token_refresh'),
+    
 
 
-]
+] + static(settings.STATIC_URL, document_root=settings.STATICFILES_DIRS[0])
 
 
 

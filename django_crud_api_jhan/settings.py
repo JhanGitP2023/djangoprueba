@@ -127,7 +127,11 @@ DATABASES = {
     )
 }
 
+STATIC_URL = '/static/'
 
+# Si estás en desarrollo, añade esto:
+import os
+STATICFILES_DIRS = [os.path.join(BASE_DIR, 'tu_app/static')]
 
 # Password validation
 # https://docs.djangoproject.com/en/5.1/ref/settings/#auth-password-validators
